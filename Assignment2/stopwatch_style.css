@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    border: 1px solid #000;
+    width: 700px;
+    height: 400px;
+    display: block;
+}
+
+.container {
+    text-align: center;
+    position: absolute;
+}
+
+#time {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.milliseconds {
+    color: red;
+}
+
+.seconds {
+    color: green;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+#start {
+    background-color: green;
+}
+
+#stop {
+    background-color: yellow;
+    color: black;
+}
+
+#reset {
+    background-color: red;
+}
