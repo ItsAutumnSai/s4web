@@ -1,0 +1,24 @@
+h1{
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+button{
+    background-color: #007bff;
+    border: 0px;
+    color:white;
+    font-size: 30px;
+}
+tr, th{
+    padding: 10px;
+    border: 1px solid black;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #007bff;
+}
+table{
+    margin: 0 auto;
+    border-spacing: 5px;
+}
