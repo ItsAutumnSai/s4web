@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            border: 1px solid #000;
+            width: 700px;
+            height: 400px;
+            display: block;
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+        }
+
+        #time {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .milliseconds {
+            color: red;
+        }
+
+        .seconds {
+            color: green;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        #start {
+            background-color: green;
+        }
+
+        #stop {
+            background-color: yellow;
+            color: black;
+        }
+
+        #reset {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="700" height="400"></canvas>
+    <div class="container">
+        <div id="time">
+            <span class="seconds">000</span>:<span class="milliseconds">00</span>
+        </div>
+        <div>
+            <button id="start">Start Timer</button>
+            <button id="stop">Stop Timer</button>
+            <button id="reset">Reset Timer</button>
+        </div>
+    </div>
+
+    <script>
+        let milliseconds = 0, seconds = 0, interval;
+
+        const millisecondsDisplay = document.querySelector(".milliseconds");
+        const secondsDisplay = document.querySelector(".seconds");
+
+        document.getElementById("start").addEventListener("click", () => {
+            clearInterval(interval);
+            interval = setInterval(startTimer, 10);
+        });
+
+        document.getElementById("stop").addEventListener("click", () => {
+            clearInterval(interval);
+        });
+
+        document.getElementById("reset").addEventListener("click", () => {
+            clearInterval(interval);
+            milliseconds = 0;
+            seconds = 0;
+            updateDisplay();
+        });
+
+        function startTimer() {
+            milliseconds++;
+            if (milliseconds === 100) {
+                milliseconds = 0;
+                seconds++;
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            millisecondsDisplay.textContent = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+            secondsDisplay.textContent = seconds.toString().padStart(3, '0');
+        }
+    </script>
+</body>
+
+</html>
