@@ -1,0 +1,46 @@
+h2{
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+button{
+    background-color: #007bff;
+    border: 0px;
+    color:white;
+    font-size: 15px;
+    padding: 10px;
+}
+th{
+    padding: 10px;
+    border: 1px solid gainsboro;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #007bff;
+}
+td{
+    padding: 10px;
+    border: 1px solid gainsboro;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+table{
+    margin: 0 auto;
+    padding: 10px;
+    border-collapse: collapse;
+}
+.marker{
+    background-color: red;
+    color: white;
+}
+.wrapper{
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 0;
+    max-width: fit-content;
+    margin: 20px auto;
+}
