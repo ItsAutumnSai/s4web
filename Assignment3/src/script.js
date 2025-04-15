@@ -4,8 +4,6 @@ import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-/////////////////////////////////////////////////////////////////////////
-//// LOADING MANAGER
 const ftsLoader = document.querySelector(".lds-roller")
 const looadingCover = document.getElementById("loading-text-intro")
 const loadingManager = new LoadingManager()
