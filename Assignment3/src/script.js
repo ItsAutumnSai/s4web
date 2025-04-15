@@ -79,7 +79,7 @@ camera.position.set(19, 1.54, -0.1)
 cameraGroup.add(camera)
 
 const camera2 = new PerspectiveCamera(35, containerDetails.clientWidth / containerDetails.clientHeight, 1, 100)
-camera2.position.set(1.9, 2.7, 2.7)
+camera2.position.set(1.9, 3.5, 2.7)
 camera2.rotation.set(0, 1.1, 0)
 scene.add(camera2)
 
@@ -133,7 +133,7 @@ function clearScene() {
 /////////////////////////////////////////////////////////////////////////
 //// INTRO CAMERA ANIMATION USING TWEEN
 function introAnimation() {
-    new TWEEN.Tween(camera.position.set(0, 4, 2.7)).to({ x: 0, y: 2.4, z: 8.8 }, 3500).easing(TWEEN.Easing.Quadratic.InOut).start()
+    new TWEEN.Tween(camera.position.set(0, 4, 2.7)).to({ x: 0, y: 3, z: 8.8 }, 3500).easing(TWEEN.Easing.Quadratic.InOut).start()
         .onComplete(function () {
             TWEEN.remove(this)
             document.querySelector('.header').classList.add('ended')
@@ -148,14 +148,14 @@ document.getElementById('agung').addEventListener('click', () => {
     document.getElementById('agung').classList.add('active')
     document.getElementById('sultan').classList.remove('active')
     document.getElementById('content').innerHTML = 'Halo! Saya Agung.'
-    animateCamera({ x: 1.9, y: 2.7, z: 2.7 }, { y: 1.1 })
+    animateCamera({ x: 1.9, y: 3.5, z: 2.7 }, { y: 1.1 })
 })
 
 document.getElementById('sultan').addEventListener('click', () => {
     document.getElementById('sultan').classList.add('active')
     document.getElementById('agung').classList.remove('active')
     document.getElementById('content').innerHTML = 'Halo! Saya Sultan.'
-    animateCamera({ x: -0.9, y: 3.1, z: 2.6 }, { y: -0.1 })
+    animateCamera({ x: -0, y: 3.6, z: 2.6 }, { y: -0.1 })
 })
 
 /////////////////////////////////////////////////////////////////////////
