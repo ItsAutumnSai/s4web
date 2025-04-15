@@ -1,7 +1,5 @@
-/////////////////////////////////////////////////////////////////////////
-///// IMPORT
-import './main.css'
-import { Clock, Scene, LoadingManager, WebGLRenderer, sRGBEncoding, Group, PerspectiveCamera, DirectionalLight, PointLight, MeshPhongMaterial } from 'three'
+import './style.css'
+import { Clock, Scene, LoadingManager, WebGLRenderer, sRGBEncoding, Group, PerspectiveCamera, DirectionalLight, PointLight, MeshPhongMaterial, TextureLoader, RepeatWrapping, SRGBColorSpace } from 'three';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -99,25 +97,28 @@ window.addEventListener('resize', () => {
     renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 1))
 })
 
-/////////////////////////////////////////////////////////////////////////
-///// SCENE LIGHTS
 const sunLight = new DirectionalLight(0x435c72, 0.08)
 sunLight.position.set(-100, 0, -100)
 scene.add(sunLight)
 
-const fillLight = new PointLight(0x88b2d9, 2.7, 4, 3)
+const fillLight = new PointLight(0xfdf35e, 10, 4, 3)
 fillLight.position.set(30, 3, 1.8)
 scene.add(fillLight)
 
-/////////////////////////////////////////////////////////////////////////
-///// LOADING GLB/GLTF MODEL FROM BLENDER
+const textureModel = new TextureLoader().load('textures/BakedsultanagunG.png');
+textureModel.wrapS = RepeatWrapping;
+textureModel.wrapT = RepeatWrapping;
+textureModel.flipY = false;
+// textureModel.colorSpace = SRGBColorSpace;
+textureModel.channel = 0;
 loader.load('models/gltf/model.glb', function (gltf) {
 
     gltf.scene.traverse((obj) => {
         if (obj.isMesh) {
             oldMaterial = obj.material
             obj.material = new MeshPhongMaterial({
-                shininess: 45
+                map:textureModel,
+                shininess: 0
             })
         }
     })
