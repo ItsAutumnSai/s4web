@@ -182,12 +182,12 @@ function rendeLoop() {
     previousTime = elapsedTime
 
     const parallaxY = cursor.y
-    sphereabc.position.y -= (parallaxY * 9 + sphereabc.position.y - 2) * deltaTime
-    fillLight.position.y -= (parallaxY * 9 + fillLight.position.y - 2) * deltaTime
+    sphereabc.position.y -= (parallaxY * 9 + sphereabc.position.y - 2) *2 * deltaTime
+    fillLight.position.y -= (parallaxY * 9 + fillLight.position.y - 2) *2 * deltaTime
 
     const parallaxX = cursor.x
-    sphereabc.position.x += (parallaxX * 8 - sphereabc.position.x) * 2 * deltaTime
-    fillLight.position.x += (parallaxX * 8 - fillLight.position.x) * 2 * deltaTime
+    sphereabc.position.x += (parallaxX * 9 - sphereabc.position.x) * 2 * deltaTime
+    fillLight.position.x += (parallaxX * 9 - fillLight.position.x) * 2 * deltaTime
 
     cameraGroup.position.z -= (parallaxY / 3 + cameraGroup.position.z) * 2 * deltaTime
     cameraGroup.position.x += (parallaxX / 3 - cameraGroup.position.x) * 2 * deltaTime
