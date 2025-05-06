@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bola Bergerak</title>
+    <link rel="stylesheet" href="bola_style.css">
+</head>
+
+<body>
+    <canvas id="canvas1" width="700" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas1');
+        const ctx = canvas.getContext('2d');
+
+        const radius = 20;
+        let x = -radius; //starting point
+        let y = canvas.height / 2; //mid vertical
+        let speed = 2; //speed
+
+        const rightLimit = canvas.width - radius;
+        const bottomLimit = canvas.height - radius;
+        const leftLimit = -radius;
+
+        let stage = "right";
+        const interval = setInterval(update, 10);
+        
+        function drawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = "white";
+            ctx.fill();
+        }
+
+        function update() {
+            if (stage === "right") {
+                if (x < rightLimit) {
+                    x += speed;
+                } else {
+                    stage = "down";
+                }
+            } else if (stage === "down") {
+                if (y < bottomLimit) {
+                    y += speed;
+                } else {
+                    stage = "left";
+                }
+            } else if (stage === "left") {
+                if (x > leftLimit) {
+                    x -= speed;
+                } else {
+                    clearInterval(interval);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            drawCanvas();
+        }
+    </script>
+</body>
+</html>

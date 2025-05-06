@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="stopwatch_style.css">
+</head>
+
+<body>
+    <canvas width="700" height="400"></canvas>
+    <div class="container">
+        <div id="time">
+            <span class="seconds", id="seconds">000</span>:<span class="milliseconds", id="milliseconds">00</span>
+        </div>
+        <div>
+            <button id="start", onclick="startTimer()">Start Timer</button>
+            <button id="stop", onclick="stopTimer()">Stop Timer</button>
+            <button id="reset", onclick="resetTimer()">Reset Timer</button>
+        </div>
+    </div>
+    <script>
+        let startTime, interval
+        elapsed = 0;
+        clearInterval(interval);
+        let doRun = false;
+
+        function startTimer() {
+            if (doRun) return;
+            startTime = Date.now() - elapsed;
+            interval = setInterval(() => {
+                elapsed = Date.now() - startTime;
+                let seconds = Math.floor(elapsed / 1000);
+                let milliseconds = Math.floor((elapsed % 1000) / 10); // 2 digit
+
+                let formattedSeconds = String(seconds).padStart(3, '0');
+                let formattedMilliseconds = String(milliseconds).padStart(2, '0');
+
+                document.getElementById('seconds').textContent = formattedSeconds;
+                document.getElementById('milliseconds').textContent = formattedMilliseconds;
+            }, 10);
+            doRun = true;
+        }
+        function stopTimer(){
+            clearInterval(interval);
+            doRun = false;
+        }
+        function resetTimer(){
+            elapsed = 0;
+            document.getElementById('seconds').textContent = '000';
+            document.getElementById('milliseconds').textContent = '00';
+            stopTimer();
+        }
+    </script>
+</body>
+</html>
