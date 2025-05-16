@@ -11,7 +11,9 @@
     <canvas width="700" height="400"></canvas>
     <div class="container">
         <div id="time">
-            <span class="seconds", id="seconds">000</span>:<span class="milliseconds", id="milliseconds">00</span>
+            <span class ="minutes", id="minutes">00</span>:
+            <span class="seconds", id="seconds">000</span>:
+            <span class="milliseconds", id="milliseconds">00</span>
         </div>
         <div>
             <button id="start", onclick="startTimer()">Start Timer</button>
@@ -21,7 +23,7 @@
     </div>
     <script>
         let startTime, interval
-        elapsed = 0;
+        elapsed = 58000;
         clearInterval(interval);
         let doRun = false;
 
@@ -30,12 +32,15 @@
             startTime = Date.now() - elapsed;
             interval = setInterval(() => {
                 elapsed = Date.now() - startTime;
-                let seconds = Math.floor(elapsed / 1000);
+                let minutes = Math.floor(elapsed / 60000);
+                let seconds = Math.floor(elapsed / 1000) % 60;
                 let milliseconds = Math.floor((elapsed % 1000) / 10); // 2 digit
 
+                let formattedMinutes = String(minutes).padStart(2, '0');
                 let formattedSeconds = String(seconds).padStart(3, '0');
                 let formattedMilliseconds = String(milliseconds).padStart(2, '0');
 
+                document.getElementById('minutes').textContent = formattedMinutes;
                 document.getElementById('seconds').textContent = formattedSeconds;
                 document.getElementById('milliseconds').textContent = formattedMilliseconds;
             }, 10);
@@ -47,6 +52,7 @@
         }
         function resetTimer(){
             elapsed = 0;
+            document.getElementById('minutes').textContent = '00';
             document.getElementById('seconds').textContent = '000';
             document.getElementById('milliseconds').textContent = '00';
             stopTimer();
