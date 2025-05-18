@@ -1,5 +1,8 @@
 {
-  "repository": "#",
+  "repository": {
+    "type": "git",
+    "url": "#"
+  },
   "license": "UNLICENSED",
   "author": "Anderson Mancini <andersonmancini30@gmail.com> (https://twitter.com/Andersonmancini)",
   "scripts": {
@@ -13,6 +16,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.5.0",
+    "express": "^5.1.0",
     "file-loader": "^6.2.0",
     "html-loader": "^3.0.0",
     "html-webpack-plugin": "^5.5.0",
@@ -25,5 +29,10 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0",
     "webpack-merge": "^5.8.0"
-  }
+  },
+  "name": "assignment3",
+  "version": "1.0.0",
+  "description": "Download dan instal Node.js (https://nodejs.org/en/download/)",
+  "main": "index.js",
+  "keywords": []
 }
