@@ -139,14 +139,14 @@ function introAnimation() {
 document.getElementById('agung').addEventListener('click', () => {
     document.getElementById('agung').classList.add('active')
     document.getElementById('sultan').classList.remove('active')
-    document.getElementById('content').innerHTML = 'Halo! Saya Agung.'
+    document.getElementById('content').innerHTML = 'Spesialisasi di web programming dan UI/UX.'
     animateCamera({ x: 1.9, y: 3.5, z: 2.7 }, { y: 1.1 })
 })
 
 document.getElementById('sultan').addEventListener('click', () => {
     document.getElementById('sultan').classList.add('active')
     document.getElementById('agung').classList.remove('active')
-    document.getElementById('content').innerHTML = 'Halo! Saya Sultan.'
+    document.getElementById('content').innerHTML = 'Spesialisasi di 3D Design.'
     animateCamera({ x: -0, y: 3.6, z: 2.6 }, { y: -0.1 })
 })
 
