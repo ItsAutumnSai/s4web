@@ -9,9 +9,8 @@
 </head>
 
 <body>
-    <div class="calendar-container">
+    <div class="wrapper">
         <?php
-
         //getting current dates
         date_default_timezone_set('Asia/Jakarta');
         $month = isset($_GET['month']) ? (int)$_GET['month'] : date('n');
@@ -28,7 +27,6 @@
         $current_year = date('Y');
         $current_day = date('j');
 
-        //key & values
         $month_names = [
             1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
             5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
@@ -36,34 +34,34 @@
         ];
 
         $display_month_name = $month_names[$month];
-        //untuk mendapatkan jumlah hari dalam bulan tertentu
         $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        //untuk tahu hari apa tanggal 1 bisa ditaruh dalam tabel
         $first_day_of_month = date('w', mktime(0, 0, 0, $month, 1, $year));
 
-        //function back and forth untuk bulan
-        $prev_month_link = '?month=' . ($month - 1) . '&year=' . $year;
-        $next_month_link = '?month=' . ($month + 1) . '&year=' . $year;
-
-        echo '<div class="navigation">';
-        echo '<a href="' . $prev_month_link . '">&lt;&lt; Bulan Sebelumnya</a>';
-        echo '<span class="current-month-year">' . $display_month_name . ' ' . $year . '</span>';
-        echo '<a href="' . $next_month_link . '">Bulan Berikutnya &gt;&gt;</a>';
-        echo '</div>';
+        // Header with navigation
+        echo '<h2>';
+        echo '<form method="get" style="display:inline">';
+        echo '<input type="hidden" name="month" value="' . ($month - 1) . '">';
+        echo '<input type="hidden" name="year" value="' . $year . '">';
+        echo '<button type="submit" class="arrow-btn" aria-label="Bulan sebelumnya">&#9664;</button>';
+        echo '</form> ';
+        echo $display_month_name . ' ' . $year;
+        echo ' <form method="get" style="display:inline">';
+        echo '<input type="hidden" name="month" value="' . ($month + 1) . '">';
+        echo '<input type="hidden" name="year" value="' . $year . '">';
+        echo '<button type="submit" class="arrow-btn" aria-label="Bulan berikutnya">&#9654;</button>';
+        echo '</form>';
+        echo '</h2>';
 
         echo '<table>';
-        echo '<thead>';
         echo '<tr>';
         echo '<th>Minggu</th>';
         echo '<th>Senin</th>';
         echo '<th>Selasa</th>';
         echo '<th>Rabu</th>';
         echo '<th>Kamis</th>';
-        echo '<th>Jumat</th>';
+        echo '<th>Jum\'at</th>';
         echo '<th>Sabtu</th>';
         echo '</tr>';
-        echo '</thead>';
-        echo '<tbody>';
 
         $day_counter = 1;
         echo '<tr>';
@@ -73,16 +71,13 @@
         }
 
         for ($day = 1; $day <= $num_days; $day++) {
-            $full_date = $year . '-' . sprintf('%02d', $month) . '-' . sprintf('%02d', $day);
             $class = '';
-
-            if ($day == $current_day) {  
-                $class = 'today';
+            if ($day == $current_day) {
+                $class = 'marker';
             }
+            echo '<td' . ($class ? ' class="' . $class . '"' : '') . '>' . $day . '</td>';
 
-            echo '<td class="' . $class . '">' . $day . '</td>';
-
-            if (($day + $first_day_of_month) % 7 == 0 && $day < $num_days) {
+            if ((($day + $first_day_of_month) % 7 == 0) && $day < $num_days) {
                 echo '</tr><tr>';
             }
         }
@@ -94,7 +89,6 @@
             }
         }
         echo '</tr>';
-        echo '</tbody>';
         echo '</table>';
         ?>
     </div>

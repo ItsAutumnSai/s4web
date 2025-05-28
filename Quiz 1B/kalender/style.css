@@ -1,45 +1,67 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: Helvetica, sans-serif;
+    background: #f5f5f5;
 }
 
-.calendar-container {
-    width: 100%;
-    max-width: 500px;
+.wrapper {
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 0;
+    max-width: fit-content;
+    margin: 40px auto;
 }
 
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+h2 {
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.navigation a {
-    text-decoration: none;
-    color: blue;
+.arrow-btn {
+    background-color: #007bff;
+    border: 0px;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 0;
+    vertical-align: middle;
 }
 
-.navigation a:hover {
-    text-decoration: underline;
+.arrow-btn:active,
+.arrow-btn:focus {
+    outline: none;
 }
 
 table {
-    width: 100%;
+    margin: 0 auto;
     border-collapse: collapse;
-    text-align: center;
 }
 
-th,
+th {
+    padding: 10px;
+    border: 1px solid gainsboro;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #007bff;
+}
+
 td {
     padding: 10px;
-    border: 1px solid;
+    border: 1px solid gainsboro;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: black;
 }
 
-td.today {
+.marker {
     background-color: red;
     color: white;
-    border: 1px solid black;
 }

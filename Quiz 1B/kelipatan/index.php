@@ -24,53 +24,38 @@ if (isset($_GET['kelipatan'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
+        <h2>Masukkan Kelipatan</h2>
         <div class="input-section">
             <form action="index.php" method="GET">
-                <label for="kelipatan">Masukkan Kelipatan : </label>
+                <label for="kelipatan">Masukkan Kelipatan: </label>
                 <input type="number" id="kelipatan" name="kelipatan" value="<?php echo htmlspecialchars($inputKelipatan ?? '0'); ?>">
-                <button onclick="checkInput()">Kirim</button>
+                <button type="submit" onclick="checkInput()">Kirim</button>
             </form>
         </div>
-
-        <h2 id="judul-kelipatan">Kelipatan dari <?php echo $kelipatan; ?></h2>
-
+        <h4 id="judul-kelipatan">
+            Kelipatan dari <?php echo $all_green ? 'Semua' : $kelipatan; ?>
+        </h4>
         <table>
-            <thead>
-                <tr>
-                    <th>Angka</th>
-                    <th>Kelipatan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                for ($i = 1; $i <= 40; $i++) {
-                    $is_multiple = ($kelipatan != 0 && $i % $kelipatan == 0);
-                    $class = ($all_green || $is_multiple) ? 'kelipatan-cell' : '';
-                    echo "<tr>";
-                    echo "<td>" . $i . "</td>";
-                    echo "<td class='" . $class . "'>" . $i . " (kelipatan dari " . $kelipatan . ")</td>";
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
+            <tr>
+                <th>Angka</th>
+                <th>Kelipatan</th>
+            </tr>
+            <?php
+            for ($i = 1; $i <= 40; $i++) {
+                $is_multiple = ($kelipatan != 0 && $i % $kelipatan == 0);
+                $class = ($all_green || $is_multiple) ? 'marker' : '';
+                $statement = ($all_green || $is_multiple) ? $i." (kelipatan dari ".$kelipatan.")" : $i;
+                echo "<tr>";
+                echo "<td>$i</td>";
+                echo "<td class='$class'>" .$statement.
+                "</td>";
+                echo "</tr>";
+            }
+            ?>
         </table>
     </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const kelipatanVal = urlParams.get('kelipatan');
-            const judulKelipatan = document.getElementById('judul-kelipatan');
-
-            if (kelipatanVal === '' || (kelipatanVal !== null && parseInt(kelipatanVal) === 0)) {
-                judulKelipatan.textContent = 'Kelipatan dari 1';
-            } else if (kelipatanVal !== null && !isNaN(parseInt(kelipatanVal))) {
-                judulKelipatan.textContent = `Kelipatan dari ${parseInt(kelipatanVal)}`;
-            } else {
-                judulKelipatan.textContent = 'Kelipatan dari 1';
-            }
-        });
         function checkInput() {
             const k = document.getElementById("kelipatan");
             if (k.value < 0) {
@@ -80,6 +65,18 @@ if (isset($_GET['kelipatan'])) {
                 k.setCustomValidity("");
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const kelipatanVal = urlParams.get('kelipatan');
+            const judulKelipatan = document.getElementById('judul-kelipatan');
+            if (kelipatanVal === '' || (kelipatanVal !== null && parseInt(kelipatanVal) === 0)) {
+                judulKelipatan.textContent = 'Kelipatan dari Semua';
+            } else if (kelipatanVal !== null && !isNaN(parseInt(kelipatanVal))) {
+                judulKelipatan.textContent = `Kelipatan dari ${parseInt(kelipatanVal)}`;
+            } else {
+                judulKelipatan.textContent = 'Kelipatan dari Semua';
+            }
+        });
     </script>
 </body>
 </html>

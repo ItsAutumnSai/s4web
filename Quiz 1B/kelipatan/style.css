@@ -1,8 +1,23 @@
 body {
-    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    font-family: Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     margin: 60px;
+}
+
+h2, h4 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.wrapper {
+    padding: 25px 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 10px;
+    max-width: fit-content;
+    margin: 20px auto;
 }
 
 .container {
@@ -17,18 +32,36 @@ body {
 }
 
 table {
-    width: 100%;
     border-collapse: collapse;
-    margin-top: 40px;
-}
-
-table th,
-table td {
-    border: 1px solid;
-    padding: 10px;
     text-align: center;
+    width: 100%;
 }
 
-.kelipatan-cell {
-    background-color: lightgreen;
+th {
+    padding: 10px;
+    background-color: gainsboro;
+}
+
+td {
+    padding: 10px;
+}
+
+button {
+    background-color: #cccccc;
+    color: darkslategrey;
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: lightsteelblue;
+}
+
+button:active {
+    background-color: white;
+}
+
+.marker {
+    background-color: greenyellow;
 }
