@@ -11,11 +11,11 @@
 <body>
     <div class="calendar-container">
         <?php
-        date_default_timezone_set('Asia/Jakarta');
 
+        //getting current dates
+        date_default_timezone_set('Asia/Jakarta');
         $month = isset($_GET['month']) ? (int)$_GET['month'] : date('n');
         $year = isset($_GET['year']) ? (int)$_GET['year'] : date('Y');
-
         if ($month < 1) {
             $month = 12;
             $year--;
@@ -23,12 +23,12 @@
             $month = 1;
             $year++;
         }
-
         $today = date('Y-m-d');
         $current_month = date('n');
         $current_year = date('Y');
         $current_day = date('j');
 
+        //key & values
         $month_names = [
             1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
             5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
@@ -36,9 +36,12 @@
         ];
 
         $display_month_name = $month_names[$month];
+        //untuk mendapatkan jumlah hari dalam bulan tertentu
         $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        //untuk tahu hari apa tanggal 1 bisa ditaruh dalam tabel
         $first_day_of_month = date('w', mktime(0, 0, 0, $month, 1, $year));
 
+        //function back and forth untuk bulan
         $prev_month_link = '?month=' . ($month - 1) . '&year=' . $year;
         $next_month_link = '?month=' . ($month + 1) . '&year=' . $year;
 

@@ -1,0 +1,51 @@
+h2,h4{
+    font-weight: bold;
+    text-align: center;
+}
+body{
+    background-color: #f0f0f0;
+    font-family: Helvetica, sans-serif;
+}
+.wrapper{
+    padding: 25px 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 10px;
+    max-width: fit-content;
+    margin: 20px auto;
+}
+.my-div {
+  width: 100%;
+  box-sizing: border-box; /* optional, for consistent padding */
+  padding: 20px;           /* optional spacing inside */
+}
+.wrapper table{
+    width: 100%;
+}
+button{
+    background-color: #cccccc;
+    color: darkslategrey;
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 5px;
+}
+button:hover{
+    background-color:lightsteelblue;
+}
+button:active{
+    background-color: white;
+}
+table{
+    border-collapse: collapse;
+    text-align: center;
+}
+th{
+    padding: 10px;
+    background-color: gainsboro;
+}
+td{
+    padding: 10px;
+}
+.marker{
+    background-color: greenyellow;
+}
