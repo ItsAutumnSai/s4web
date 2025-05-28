@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calendar-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: blue;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid;
+}
+
+td.today {
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+}
