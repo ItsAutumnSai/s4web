@@ -1,10 +1,11 @@
 <?php
-$kelipatan = 0;
+$kelipatan = 1;
 
 if (isset($_GET['kelipatan'])) {
     $inputKelipatan = $_GET['kelipatan'];
 
     if ($inputKelipatan === '' || $inputKelipatan === '0') {
+        $kelipatan = 1;
         $all_green = true;
     } elseif (is_numeric($inputKelipatan) && $inputKelipatan >= 0) {
         $kelipatan = (int)$inputKelipatan;
@@ -63,11 +64,11 @@ if (isset($_GET['kelipatan'])) {
             const judulKelipatan = document.getElementById('judul-kelipatan');
 
             if (kelipatanVal === '' || (kelipatanVal !== null && parseInt(kelipatanVal) === 0)) {
-                judulKelipatan.textContent = 'Kelipatan dari 0';
+                judulKelipatan.textContent = 'Kelipatan dari 1';
             } else if (kelipatanVal !== null && !isNaN(parseInt(kelipatanVal))) {
                 judulKelipatan.textContent = `Kelipatan dari ${parseInt(kelipatanVal)}`;
             } else {
-                judulKelipatan.textContent = 'Kelipatan dari 0';
+                judulKelipatan.textContent = 'Kelipatan dari 1';
             }
         });
         function checkInput() {
