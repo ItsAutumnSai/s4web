@@ -2,57 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller // nama kelas kontroller harus sama dengan nama file
+class MahasiswaController extends Controller
 {
-    public function index() // nama fungsi yang tampil secara default
+    public function index()
     {
-        return view('mahasiswa.index'); // memanggil views
+        $mahasiswas = Mahasiswa::all(); // Mengambil semua data dari tabel mahasiswas
+        return response()->json($mahasiswas); // Mengembalikan dalam format JSON
     }
 
-    public function getData() // fungi untuk pengambilan data JSON
+    public function store(Request $request)
     {
-        $mahasiswas = Mahasiswa::latest()->get(); //Mengambil data dari Models secara DSC
-        return response()->json(['data' => $mahasiswas]); // Hasil dibuat data JSON
-    }
-
-    public function store(Request $request) //fungsi untuk requst pengiriman ke DB
-    {
-        $request->validate([// sesuaikan nama kolom yang mau diisi
-            'nama' => 'required',
+        // Validasi input yang dikirim dari client (API)
+        $request->validate([
             'nim' => 'required|unique:mahasiswas',
-            'prodi' => 'required',
-        ]);
-
-        Mahasiswa::create($request->all()); // menghubugnkan ke Models
-
-        return response()->json(['message' => 'Data berhasil disimpan']); // Respons sukses kirim data JSON
-    }
-
-    public function edit($id) // fungsi edit dengan pengambilan berdasarkan ID
-    {
-        $mahasiswa = Mahasiswa::find($id); //Mencocokkan ID masukan dengan Model
-        return response()->json($mahasiswa); // Respons JSON
-    }
-
-    public function update(Request $request, $id) //fungsi untuk Update DB dengan menghubungkan ke Models
-    {
-        $request->validate([ // sesuaikan nama kolom yang mau diedit
             'nama' => 'required',
-            'nim' => 'required|unique:mahasiswas,nim,'.$id,
-            'prodi' => 'required',
+            'prodi' => 'required'
         ]);
 
-        Mahasiswa::find($id)->update($request->all()); // menghubugnkan ke Models
+        // Menyimpan data ke database
+        $mahasiswa = Mahasiswa::create($request->all());
 
-        return response()->json(['message' => 'Data berhasil diperbarui']);
-    } // Respons JSON ketika sukses
+        // Mengembalikan data yang baru dibuat dengan status HTTP 201 (Created)
+        return response()->json($mahasiswa, 201);
+    }
 
-    public function destroy($id) //fungsi hapus dengan pengambilan data dari Models
+    public function show($id)
     {
-        Mahasiswa::destroy($id); // Fungsi Hapus by Id dari DB
-        return response()->json(['message' => 'Data berhasil dihapus']); // Respons JSON saat Berhasil
+        $mahasiswa = Mahasiswa::find($id); // Mencari mahasiswa berdasarkan ID
+
+        // Jika tidak ditemukan, kirimkan pesan error 404
+        if (is_null($mahasiswa)) {
+            return response()->json(['message' => 'Mahasiswa tidak ditemukan'], 404);
+        }
+
+        // Jika ditemukan, kembalikan data mahasiswa dalam format JSON
+        return response()->json($mahasiswa);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nim' => 'required|unique:mahasiswas,nim,'.$id,
+            'nama' => 'required',
+            'prodi' => 'required'
+        ]);
+
+        $mahasiswa = Mahasiswa::find($id); // Mencari mahasiswa berdasarkan ID
+
+        // Jika data tidak ditemukan, kembalikan pesan error
+        if (is_null($mahasiswa)) {
+            return response()->json(['message' => 'Mahasiswa tidak ditemukan'], 404);
+        }
+
+        // Jika ditemukan, update data dengan input dari client
+        $mahasiswa->update($request->all());
+
+        // Kembalikan data yang telah diperbarui
+        return response()->json($mahasiswa);
+    }
+
+    public function destroy($id)
+    {
+        $mahasiswa = Mahasiswa::find($id); // Cari mahasiswa berdasarkan ID
+
+        // Jika tidak ditemukan, kirim pesan error
+        if (is_null($mahasiswa)) {
+            return response()->json(['message' => 'Mahasiswa tidak ditemukan'], 404);
+        }
+
+        // Jika ditemukan, hapus data dari database
+        $mahasiswa->delete();
+
+        // Kirim respon sukses
+        return response()->json(['message' => 'Mahasiswa berhasil dihapus']);
     }
 }

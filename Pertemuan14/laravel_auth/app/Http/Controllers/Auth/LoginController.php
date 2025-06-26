@@ -41,6 +41,6 @@ class LoginController extends Controller
         $request->session()->invalidate();        // Kosongkan semua data session
         $request->session()->regenerateToken();   // Ganti token CSRF agar lebih aman
 
-        return redirect('/'); // REdirect ke welcome
+        return redirect('/'); // Redirect ke welcome
     }
 }
