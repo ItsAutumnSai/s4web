@@ -1,0 +1,11 @@
+{
+    "name": "Data",
+    "alias": "data",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Data\\Providers\\DataServiceProvider"
+    ],
+    "files": []
+}

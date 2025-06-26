@@ -1,0 +1,11 @@
+{
+    "name": "Yolo",
+    "alias": "yolo",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Yolo\\Providers\\YoloServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/yolo",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Yolo\\": "app/",
+            "Modules\\Yolo\\Database\\Factories\\": "database/factories/",
+            "Modules\\Yolo\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Yolo\\Tests\\": "tests/"
+        }
+    }
+}
