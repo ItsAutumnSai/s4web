@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Controllers\Controller;       
+use App\Models\User;                       
 use Illuminate\Auth\Events\Registered;     // Digunakan untuk memicu event setelah registrasi berhasil
 use Illuminate\Http\Request;               // Untuk menangani data yang dikirim dari form (seperti nama, email, password)
 use Illuminate\Support\Facades\Auth;       // Untuk proses login secara otomatis
@@ -20,9 +20,9 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],                          
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()], 
         ]);
 
         // Membuat user baru di database dengan data yang sudah divalidasi
